@@ -586,7 +586,8 @@ nav{position:sticky;top:0;z-index:50;background:rgba(17,18,16,.95);backdrop-filt
     <div class="form-row"><label>Função</label>
       <select id="fFuncao">
         <option value="atendimento">🧾 Atendimento | Caixa</option>
-        <option value="cozinha">🍳 Cozinha</option>
+        <option value="lider_cozinha">🍳 Líder de Cozinha</option>
+        <option value="aux_cozinha">🍳 Auxiliar de Cozinha</option>
         <option value="asg">🧹 ASG</option>
         <option value="subgerente">📋 Subgerente</option>
         <option value="gerente">👤 Gerente | Sub</option>
@@ -775,7 +776,7 @@ const TRILHAS = {
       {n:'F5',nome:'Assinatura do Termo de Conclusão',material:'Termo'},
     ]},
   ]},
-  cozinha:{label:'🍳 Cozinha',diasUteis:20,blocos:[
+  lider_cozinha:{label:'🍳 Líder de Cozinha',diasUteis:20,blocos:[
     {id:'bONB',fase:1,titulo:'ONBOARDING — Cultura e Marca',temas:[
       {n:'1',nome:'Negócio: missão, visão, valores e cultura Let\'s Poke',material:'Apresentação'},
       {n:'2',nome:'Organograma da empresa',material:'Apresentação'},
@@ -935,7 +936,157 @@ const TRILHAS = {
       {n:'F5',nome:'Assinatura do Termo de Conclusão',material:'Termo'},
     ]},
   ]},
-  asg:{label:'🧹 ASG',diasUteis:15,blocos:[
+aux_cozinha:{label:'🍳 Auxiliar de Cozinha',diasUteis:15,blocos:[
+    {id:'bONBAX',fase:1,titulo:'ONBOARDING — Cultura e Marca',temas:[
+      {n:'1',nome:'Negócio: missão, visão, valores e cultura Let\'s Poke',material:'Apresentação'},
+      {n:'2',nome:'Organograma da empresa',material:'Apresentação'},
+      {n:'4',nome:'Apresentação do cardápio (categorias)',material:'Cardápio'},
+      {n:'5',nome:'Degustação (foco no que não conhece)',material:'Pista'},
+      {n:'6',nome:'Kit Boas-Vindas: Manual de Conduta',material:'Manual'},
+    ]},
+    {id:'bQUAAX',fase:1,titulo:'CONTROLE DE QUALIDADE',temas:[
+      {n:'23',nome:'Controle de temperatura pista (GNs ≤ 2h)',material:'Controle'},
+      {n:'24',nome:'Orientações sobre recebimento',material:'Orientação'},
+      {n:'25',nome:'Controle temperatura dos equipamentos (2x/dia)',material:'Controle'},
+      {n:'26',nome:'Coleta de amostras — kani, atum, salmão (18h30)',material:'Orientação'},
+      {n:'27',nome:'Higiene pessoal e uniforme',material:'Orientação'},
+      {n:'28',nome:'Armazenamento seco + controle de estoque',material:'Orientação'},
+      {n:'29',nome:'Armazenamento geladeira e freezer',material:'Orientação'},
+      {n:'30',nome:'Etiquetagem de alimentos',material:'Orientação'},
+      {n:'31',nome:'Cuidados sanitários na manipulação',material:'Orientação'},
+      {n:'32',nome:'Uso correto de EPIs — visão geral',material:'Orientação'},
+      {n:'32A',nome:'EPI: Luva — uso, troca e descarte',material:'Orientação'},
+      {n:'32B',nome:'EPI: Avental térmico — quando usar e conservação',material:'Orientação'},
+      {n:'32C',nome:'EPI: Kit de limpeza de coifa — procedimento e segurança',material:'Orientação'},
+      {n:'32D',nome:'EPI: Cores das luvas — azul (alimentos), amarelo (superfícies), verde (banheiro)',material:'Orientação'},
+    ]},
+    {id:'bCOZPRODAX',fase:1,titulo:'COZINHA — Organização e Produção',temas:[
+      {n:'7',nome:'Planilha de descartes',material:'Planilha'},
+      {n:'8',nome:'Plano de produção',material:'Plano'},
+      {n:'9',nome:'Mapa de produção',material:'Mapa'},
+      {n:'10',nome:'Montagem da pista e reposições',material:'Pista'},
+      {n:'11',nome:'Fechamento de pista',material:'Orientação'},
+      {n:'12',nome:'Mise en place reposições cozinha',material:'Tabela'},
+      {n:'13A',nome:'CORTE — Abacate',material:'Produção'},
+      {n:'13B',nome:'CORTE — Gengibre',material:'Produção'},
+      {n:'13C',nome:'CORTE — Kani',material:'Produção'},
+      {n:'13D',nome:'CORTE — Manga',material:'Produção'},
+      {n:'13E',nome:'CORTE — Mix Folhas',material:'Produção'},
+      {n:'13F',nome:'CORTE — Frango',material:'Produção'},
+      {n:'13G',nome:'Cores da tábua de corte — higiene e prevenção de contaminação cruzada',material:'Orientação'},
+      {n:'14A',nome:'Pimenta',material:'Produção'},
+      {n:'14B',nome:'Tomate',material:'Produção'},
+      {n:'14C',nome:'Gengibre em cubos',material:'Produção'},
+      {n:'15A',nome:'FRITURAS — Camarão',material:'Produção'},
+      {n:'15B',nome:'FRITURAS — Crispy',material:'Produção'},
+      {n:'15C',nome:'FRITURAS — Dadinho',material:'Produção'},
+      {n:'15D',nome:'FRITURAS — Tempurá',material:'Produção'},
+      {n:'16A1',nome:'BEBIDAS — Chá Hibisco',material:'Produção'},
+      {n:'16A2',nome:'BEBIDAS — Chá Mate',material:'Produção'},
+      {n:'16A3',nome:'BEBIDAS — Chá Verde',material:'Produção'},
+      {n:'16B1',nome:'BEBIDAS — Suchá Hibisco com frutas vermelhas',material:'Produção'},
+      {n:'16B2',nome:'BEBIDAS — Suchá Mate',material:'Produção'},
+      {n:'16B3',nome:'BEBIDAS — Suchá Hibisco com laranja e gengibre',material:'Produção'},
+      {n:'16B4',nome:'BEBIDAS — Suchá Verde com frutas amarelas',material:'Produção'},
+      {n:'16B5',nome:'BEBIDAS — Suchá Verde com limão e hortelã',material:'Produção'},
+      {n:'16C1',nome:'BEBIDAS — Suco Abacaxi',material:'Produção'},
+      {n:'16C2',nome:'BEBIDAS — Suco Manga Maracujá',material:'Produção'},
+      {n:'16C3',nome:'BEBIDAS — Suco Morango Maracujá',material:'Produção'},
+      {n:'16C4',nome:'BEBIDAS — Suco de Açaí (Santana)',material:'Produção'},
+      {n:'17A',nome:'PREPAROS — Bifum',material:'Produção'},
+      {n:'17B',nome:'PREPAROS — Abacaxi',material:'Produção'},
+      {n:'17C',nome:'PREPAROS — Moyashi',material:'Produção'},
+      {n:'17D',nome:'PREPAROS — Caldo de legumes',material:'Produção'},
+      {n:'17E',nome:'PREPAROS — Cream Cheese',material:'Produção'},
+      {n:'18A',nome:'Creme Wasabi',material:'Produção'},
+      {n:'18B',nome:'Dadinho Salmão',material:'Produção'},
+      {n:'18C',nome:'Edamame',material:'Produção'},
+      {n:'18D',nome:'Shari',material:'Produção'},
+      {n:'18E',nome:'Quinoa',material:'Produção'},
+      {n:'18F',nome:'Tofu',material:'Produção'},
+      {n:'19A',nome:'Wakame',material:'Produção'},
+      {n:'19B',nome:'Maionese Spicy',material:'Produção'},
+      {n:'19C',nome:'Arroz Negro',material:'Produção'},
+      {n:'19D',nome:'Cenoura',material:'Produção'},
+      {n:'19E',nome:'Tartare',material:'Produção'},
+      {n:'19F',nome:'Acelga',material:'Produção'},
+      {n:'X1',nome:'Molho Sunonomo',material:'Produção'},
+      {n:'X2',nome:'Molho Tradicional',material:'Produção'},
+      {n:'X3',nome:'Molho Trufado',material:'Produção'},
+      {n:'X4',nome:'Molho Ponzu',material:'Produção'},
+      {n:'X5',nome:'Molho Let\'s Poke',material:'Produção'},
+      {n:'X6',nome:'Marinada Shimeji',material:'Produção'},
+      {n:'20A',nome:'Marinada Havaiana',material:'Produção'},
+      {n:'20B',nome:'Molho Sue',material:'Produção'},
+      {n:'20C',nome:'Sessame',material:'Produção'},
+      {n:'20D',nome:'Molho Maracujá e Coco',material:'Produção'},
+      {n:'20E',nome:'Marinada Tofu',material:'Produção'},
+      {n:'21A',nome:'Tilápia',material:'Produção'},
+      {n:'21B',nome:'Salmão',material:'Produção'},
+      {n:'21C',nome:'Atum',material:'Produção'},
+      {n:'21D',nome:'Ceviche',material:'Produção'},
+      {n:'21E',nome:'Salmão Empanado',material:'Produção'},
+      {n:'21F',nome:'Três Peixes',material:'Produção'},
+      {n:'22A',nome:'Camarão grelhado',material:'Produção'},
+      {n:'X7',nome:'Atum Spicy',material:'Produção'},
+      {n:'22B',nome:'Salmão Spicy',material:'Produção'},
+      {n:'22D',nome:'Shimeji',material:'Produção'},
+      {n:'22E',nome:'Atum Selado',material:'Produção'},
+      {n:'X8',nome:'Salmão com Cream Cheese',material:'Produção'},
+      {n:'X9',nome:'North Shore',material:'Produção'},
+      {n:'22F',nome:'Frango Grelhado',material:'Produção'},
+      {n:'Y3',nome:'Salmão Marinado Maçaricado',material:'Produção'},
+      {n:'Y4',nome:'Atum Havaiano',material:'Produção'},
+      {n:'Y5',nome:'Camarão Empanado',material:'Produção'},
+      {n:'Y6',nome:'Salmão Grelhado',material:'Produção'},
+      {n:'Y7',nome:'Tofu Grelhado Marinado',material:'Produção'},
+      {n:'23A',nome:'PORCIONAMENTO — Padrão de gramatura por item',material:'Produção'},
+      {n:'23B',nome:'PORCIONAMENTO — Pesagem e conferência na pista',material:'Produção'},
+      {n:'23E',nome:'SELAGEM — Porcionamentos (kani, tomate e etc)',material:'Produção'},
+      {n:'NXA3',nome:'Saída de estoque — registro e controle',material:'Orientação'},
+      {n:'NXA4',nome:'Rastreabilidade de proteína — etiquetagem e validade',material:'Orientação'},
+      {n:'NXA5',nome:'Montagem de poke: base',material:'Pista'},
+      {n:'NXA6',nome:'Montagem de poke: acompanhamento e toppings',material:'Pista'},
+      {n:'NXA7',nome:'Montagem de poke: proteína',material:'Pista'},
+      {n:'NXA8',nome:'Entrega de poke (salão)',material:'Orientação'},
+      {n:'NXA9',nome:'EPI — Luva',material:'Orientação'},
+      {n:'NXA10',nome:'EPI — Avental térmico',material:'Orientação'},
+      {n:'NXA11',nome:'EPI — Kit de limpeza de coifa',material:'Orientação'},
+      {n:'NXA12',nome:'EPI — Cores das luvas (azul, amarelo e verde)',material:'Orientação'},
+      {n:'OCbCO01',nome:'Gengibre conserva',material:'Produção'},
+      {n:'OCbCO02',nome:'Crispy de Alho Poró',material:'Produção'},
+      {n:'OCbCO08',nome:'Abacaxi Grelhado',material:'Produção'},
+      {n:'OCbCO010',nome:'Tofu temperado',material:'Produção'},
+      {n:'OCbCO011',nome:'Marinada de Frango',material:'Produção'},
+      {n:'OCbCO012',nome:'Marinada de Salmão',material:'Produção'},
+      {n:'OCbCO013',nome:'Molho Asiático',material:'Produção'},
+      {n:'OCbCO014',nome:'Molho Tofu',material:'Produção'},
+    ]},
+    {id:'bEXPCOZAX',fase:1,titulo:'EXPEDIÇÃO COZINHA',temas:[
+      {n:'C1',nome:'Padrão de montagem — todas as categorias',material:'Pista'},
+      {n:'C1A',nome:'Montagem de poke: base (Shari, Quinoa, Arroz Negro, Gohan)',material:'Pista'},
+      {n:'C1B',nome:'Montagem de poke: acompanhamentos e toppings',material:'Pista'},
+      {n:'C1C',nome:'Montagem de poke: proteína — posicionamento e gramatura',material:'Pista'},
+      {n:'C2',nome:'Leitura de cards, comanda e itens à parte',material:'Cards'},
+      {n:'C3',nome:'Pré-montagem de bases e porcionamento',material:'Orientação'},
+      {n:'C3A',nome:'Entrega de poke no salão — padrão de apresentação',material:'Orientação'},
+    ]},
+    
+    {id:'bAVALAX',fase:1,titulo:'AVALIAÇÃO COMPORTAMENTAL',temas:[
+      {n:'AC1',nome:'Postura profissional e apresentação pessoal',material:'Avaliação'},
+      {n:'AC2',nome:'Pontualidade e comprometimento',material:'Avaliação'},
+      {n:'AC3',nome:'Comunicação e trabalho em equipe',material:'Avaliação'},
+      {n:'AC4',nome:'Organização, atenção e agilidade',material:'Avaliação'},
+      {n:'AC5',nome:'Aderência à cultura e atendimento Let\'s Poke',material:'Avaliação'},
+    ]},
+    {id:'bINAUGAX',fase:2,titulo:'INAUGURAÇÃO',temas:[
+      {n:'F2',nome:'Revisão prática dos temas com absorção insuficiente',material:'Pista/Sistema'},
+      {n:'F3',nome:'Acompanhamento da operação (Dias 1 e 2)',material:'Observação'},
+      {n:'F4',nome:'Validação de autonomia e feedback final',material:'Formulário'},
+      {n:'F5',nome:'Assinatura do Termo de Conclusão',material:'Termo'},
+    ]},
+  ]},
+    asg:{label:'🧹 ASG',diasUteis:15,blocos:[
     {id:'bONB',fase:1,titulo:'ONBOARDING — Cultura e Marca',temas:[
       {n:'1',nome:'Negócio: missão, visão, valores e cultura Let\'s Poke',material:'Apresentação'},
       {n:'2',nome:'Organograma da empresa',material:'Apresentação'},
@@ -1702,7 +1853,11 @@ const TRILHAS = {
   ]},
 };
 
-const FUNC_ICONS={atendimento:'🧾',cozinha:'🍳',asg:'🧹',subgerente:'📋',gerente:'👤',franqueado:'🏪'};
+const FUNC_ICONS={atendimento:'🧾',lider_cozinha:'🍳',aux_cozinha:'🍳',asg:'🧹',subgerente:'📋',gerente:'👤',franqueado:'🏪'};
+
+// Compatibilidade: colaboradores salvos com funcao='cozinha' usam a trilha de líder
+TRILHAS['cozinha'] = TRILHAS['lider_cozinha'];
+FUNC_ICONS['cozinha'] = '🍳';
 
 // ══════════════════════════════════════════════
 // CONFORMIDADE OPERACIONAL
