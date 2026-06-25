@@ -2652,12 +2652,10 @@ Unidade: ${c.unidade}
 Concluiu com êxito a trilha obrigatória de formação da operação.
 
 Data de conclusão: ${dataConclusao}
-Carga da trilha: ${trilha.diasUteis} dias úteis
 Aplicadores envolvidos: ${aplicadores.length?aplicadores.join(', '):'—'}
 Status: Concluído com êxito
 
-Observação: este certificado refere-se à trilha obrigatória de formação,
-anterior à etapa final de inauguração na unidade.
+Observação: este certificado refere-se à trilha obrigatória de formação operacional.
 
 ${'='.repeat(56)}
 `;
@@ -2689,8 +2687,8 @@ function printCertificado(){
   const html=`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
   <title>Certificado — ${escapeHtml(c.nome)}</title>
   <style>${reportBaseCSS()}
-    body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f3ee;padding:20px}
-    @page{margin:10mm;size:A4 landscape}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f3ee;padding:12px}
+    @page{margin:8mm;size:A4 landscape}
   </style>
 <style>
 @media(max-width:640px){
@@ -2710,8 +2708,8 @@ function printCertificado(){
 </head><body>
   <div class="cert-wrap">
     <div class="cert-inner">
-      <img src="${LOGO_URL}" style="height:52px;object-fit:contain;margin-bottom:8px" onerror="this.style.display='none'" />
-      <div class="cert-sub">Sistema de Treinamento de Implantação</div>
+      <img src="${LOGO_URL}" style="height:42px;object-fit:contain;margin-bottom:6px" onerror="this.style.display='none'" />
+      <div class="cert-sub">Sistema de Trilha de Treinamento</div>
 
       <div class="cert-title">Certificamos que</div>
       <div class="cert-nome">${escapeHtml(c.nome)}</div>
@@ -2721,36 +2719,35 @@ function printCertificado(){
       <div class="cert-body">
         concluiu com êxito a trilha obrigatória de formação operacional da marca Let's Poke,
         cumprindo todos os blocos de treinamento previstos para sua função,
-        estando apto(a) para atuar na operação da unidade franqueada.
+        estando apto(a) para atuar na operação da unidade Let's Poke.
       </div>
 
       <div class="cert-dados">
         <div class="cert-dado"><label>Data de conclusão</label><span>${dataConclusao}</span></div>
-        <div class="cert-dado"><label>Carga da trilha</label><span>${trilha.diasUteis} dias úteis</span></div>
         <div class="cert-dado"><label>Início da trilha</label><span>${formatDateShort(c.dataInicio)}</span></div>
-        <div class="cert-dado"><label>Aplicadores</label><span>${aplicadores.length?escapeHtml(aplicadores.join(', ')):'—'}</span></div>
+        <div class="cert-dado cert-dado-full"><label>Aplicadores</label><span>${aplicadores.length?escapeHtml(aplicadores.join(', ')):'—'}</span></div>
       </div>
 
       <div class="cert-assinatura">
         <div class="cert-sig-box">
-          ${ultimaAss?.img?`<img src="${ultimaAss.img}" style="height:44px;max-width:160px;object-fit:contain;display:block;margin:0 auto 6px" />`:'<div style="height:44px"></div>'}
+          <div style="height:32px"></div>
           <div class="cert-sig-line"></div>
           <div class="cert-sig-label">${escapeHtml(c.nome)}</div>
-          <div style="font-size:7.5pt;color:#aaa">${ultimaAss?.dataHora?formatDateShort(ultimaAss.dataHora):dataConclusao}</div>
+          <div style="font-size:7.5pt;color:#aaa">${dataConclusao}</div>
         </div>
         <div class="cert-sig-box">
-          <div style="height:44px"></div>
+          <div style="height:32px"></div>
           <div class="cert-sig-line"></div>
           <div class="cert-sig-label">Franqueadora Let's Poke</div>
-          <div style="font-size:7.5pt;color:#aaa">Responsável pela Implantação</div>
+          <div style="font-size:7.5pt;color:#aaa">Responsável pelo Treinamento</div>
         </div>
       </div>
 
       <div class="cert-seal">🏅</div>
 
-      <div style="margin-top:16px;font-size:7pt;color:#bbb;line-height:1.6">
-        Este certificado refere-se à trilha obrigatória de formação, anterior à etapa de inauguração.<br>
-        Gerado em ${new Date().toLocaleString('pt-BR')} pelo Sistema de Treinamento de Implantação Let's Poke.
+      <div style="margin-top:12px;font-size:7pt;color:#bbb;line-height:1.5">
+        Este certificado refere-se à trilha obrigatória de formação operacional.<br>
+        Gerado em ${new Date().toLocaleString('pt-BR')} pelo Sistema de Trilha de Treinamento Let's Poke.
       </div>
     </div>
   </div>
@@ -3564,24 +3561,30 @@ function reportBaseCSS() {
     .rpt-col-meta{font-size:8pt;color:#888;margin-top:1px}
 
     /* CERTIFICADO */
-    .cert-wrap{max-width:640px;margin:40px auto;border:3px solid #f0c040;border-radius:16px;padding:48px 56px;text-align:center;position:relative}
-    .cert-inner{border:1px solid #f0e0a0;border-radius:12px;padding:36px;position:relative}
-    .cert-marca{font-size:28pt;font-weight:800;color:#1a1a1a;margin-bottom:2px}
-    .cert-sub{font-size:9pt;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:32px}
-    .cert-title{font-size:11pt;text-transform:uppercase;letter-spacing:2px;color:#e07830;font-weight:700;margin-bottom:8px}
-    .cert-nome{font-size:22pt;font-weight:800;color:#1a1a1a;margin-bottom:6px;border-bottom:2px solid #f0c040;padding-bottom:12px}
-    .cert-funcao{font-size:11pt;color:#555;margin-bottom:4px}
-    .cert-unidade{font-size:10pt;color:#888;margin-bottom:28px}
-    .cert-body{font-size:9.5pt;color:#444;line-height:1.8;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto}
-    .cert-dados{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;text-align:left;background:#f9f8f5;border-radius:8px;padding:14px 18px;border:1px solid #ece8d8}
-    .cert-dado label{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#888;display:block}
-    .cert-dado span{font-size:9.5pt;font-weight:600;color:#1a1a1a}
-    .cert-assinatura{margin-top:28px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+    .cert-wrap{max-width:760px;margin:0 auto;border:3px solid #f0c040;border-radius:14px;padding:24px 36px;text-align:center;position:relative;box-sizing:border-box}
+    .cert-inner{border:1px solid #f0e0a0;border-radius:10px;padding:20px 28px;position:relative}
+    .cert-marca{font-size:24pt;font-weight:800;color:#1a1a1a;margin-bottom:2px}
+    .cert-sub{font-size:8pt;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+    .cert-title{font-size:9pt;text-transform:uppercase;letter-spacing:2px;color:#e07830;font-weight:700;margin-bottom:6px}
+    .cert-nome{font-size:20pt;font-weight:800;color:#1a1a1a;margin-bottom:4px;border-bottom:2px solid #f0c040;padding-bottom:8px}
+    .cert-funcao{font-size:10pt;color:#555;margin-bottom:2px}
+    .cert-unidade{font-size:9pt;color:#888;margin-bottom:14px}
+    .cert-body{font-size:9pt;color:#444;line-height:1.6;margin-bottom:14px;max-width:520px;margin-left:auto;margin-right:auto}
+    .cert-dados{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-bottom:18px;text-align:left;background:#f9f8f5;border-radius:8px;padding:10px 16px;border:1px solid #ece8d8}
+    .cert-dado label{font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#888;display:block;margin-bottom:1px}
+    .cert-dado span{font-size:9pt;font-weight:600;color:#1a1a1a}
+    .cert-dado-full{grid-column:1/-1}
+    .cert-assinatura{margin-top:14px;display:flex;justify-content:center;gap:42px;flex-wrap:wrap}
     .cert-sig-box{text-align:center}
-    .cert-sig-line{width:160px;border-top:1px solid #333;margin:0 auto 6px}
+    .cert-sig-line{width:160px;border-top:1px solid #333;margin:0 auto 4px}
     .cert-sig-label{font-size:8pt;color:#666}
-    .cert-seal{margin:20px auto 0;width:72px;height:72px;border:3px solid #f0c040;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px}
-    @media print{.no-print{display:none}}
+    .cert-seal{margin:10px auto 0;width:52px;height:52px;border:2px solid #f0c040;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+    @media print{
+      body{background:#fff !important;padding:0 !important;margin:0 !important}
+      .cert-wrap{margin:0 auto !important;border-width:2px !important;padding:18px 28px !important;page-break-inside:avoid !important}
+      .cert-inner{padding:16px 22px !important}
+      .no-print{display:none}
+    }
   `;
 }
 
@@ -3594,7 +3597,7 @@ function reportHeader(titulo, subtitulo='') {
         <img class="rpt-logo" src="${LOGO_URL}" onerror="this.style.display='none'" />
         <div>
           <div class="rpt-logo-text">Let's Poke</div>
-          <div class="rpt-logo-sub">Sistema de Treinamento de Implantação</div>
+          <div class="rpt-logo-sub">Sistema de Trilha de Treinamento</div>
         </div>
       </div>
       <div class="rpt-header-right">
@@ -3758,7 +3761,7 @@ function printReport() {
 
   <div class="rpt-footer">
     <div class="rpt-footer-logo">Let's Poke</div>
-    <div>Documento gerado pelo Sistema de Treinamento de Implantação · ${new Date().toLocaleString('pt-BR')}</div>
+    <div>Documento gerado pelo Sistema de Trilha de Treinamento · ${new Date().toLocaleString('pt-BR')}</div>
   </div>
   <script>window.onload=()=>window.print()<\/script>
   </body></html>`;
