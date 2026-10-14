@@ -2311,7 +2311,6 @@ function colabInfo(c) {
     // Para acesso por loja, ignora blocos ocultos
     if (!isMaster) {
       if (bloco.fase === 2) return;
-      if (bloco.titulo.includes('AVALIAÇÃO COMPORTAMENTAL')) return;
     }
     totalBlocos++;
     bloco.temas.forEach((_,ti) => {
@@ -2379,7 +2378,6 @@ function renderTrilha() {
     if (bloco.fase === 2 && !esFranquia) return false;
     if (isMaster) return true;
     if (bloco.fase === 2) return false;
-    if (bloco.titulo.includes('AVALIAÇÃO COMPORTAMENTAL')) return false;
     return true;
   }
   
@@ -2530,13 +2528,26 @@ function toggleObs(bi,ti) {
 
 function toggleConcluido(bi) {
   const c=state.colabs[activeColabIdx];
-  if(!c.blocos[bi])c.blocos[bi]={open:true,concluido:false,temas:[]};
-  c.blocos[bi].concluido=!c.blocos[bi].concluido;
-  addHistorico(c, c.blocos[bi].concluido ? 'Bloco concluído' : 'Bloco reaberto', `Bloco ${bi+1}`);
+  const b=ensureBlocoState(c,bi);
+  // Ao CONCLUIR, exige nome de quem aplicou + assinatura do colaborador treinado.
+  // Reabrir continua livre.
+  if(!b.concluido){
+    const temAplicador=(b.aplicadoPor||'').trim().length>0;
+    const temAssinatura=!!(b.assinaturaColaborador&&b.assinaturaColaborador.assinada);
+    if(!temAplicador||!temAssinatura){
+      const faltas=[];
+      if(!temAplicador) faltas.push('o nome de quem aplicou');
+      if(!temAssinatura) faltas.push('a assinatura do colaborador');
+      toast('⚠ Para concluir, preencha '+faltas.join(' e ')+'.');
+      return;
+    }
+  }
+  b.concluido=!b.concluido;
+  addHistorico(c, b.concluido ? 'Bloco concluído' : 'Bloco reaberto', `Bloco ${bi+1}`);
   renderTrilha();
   renderPainel();
   debounceSave(c);
-  toast(c.blocos[bi].concluido?'✔ Bloco concluído!':'Bloco reaberto');
+  toast(b.concluido?'✔ Bloco concluído!':'Bloco reaberto');
 }
 
 // ══════════════════════════════════════════════
