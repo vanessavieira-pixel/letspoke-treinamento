@@ -2293,7 +2293,7 @@ function renderPainel() {
           <div class="colab-progbar"><div class="colab-progfill" style="width:${info.pct}%"></div></div>
           <div class="colab-status ${info.statusClass}">${info.statusLabel}</div>
         </div>
-        <button class="delete-btn" onclick="event.stopPropagation();deleteColab(${i})" ${ACESSO_ATUAL.tipo!=='master'?'style="display:none"':''}>🗑</button>
+        <button class="delete-btn" onclick="event.stopPropagation();deleteColab(${i})">🗑</button>
       </div>`;
     }).join('');
 
@@ -2341,7 +2341,7 @@ function openTrilha(idx) {
   document.getElementById('trilhaNome').textContent = `${FUNC_ICONS[c.funcao]} ${c.nome}`;
   const aplicadores = collectAplicadores(c);
   document.getElementById('trilhaMeta').textContent = `${trilha.label} · ${c.unidade} · ${trilha.diasUteis} dias úteis · Aplicadores: ${aplicadores.length?aplicadores.join(', '):'—'} · Início: ${formatDateShort(c.dataInicio)}`;
-  document.getElementById('certBtn').style.display = isMaster ? '' : 'none';
+  document.getElementById('certBtn').style.display = (isMaster || ACESSO_ATUAL.tipo === 'franquia') ? '' : 'none';
   document.getElementById('tabTrilha').style.display='';
   goView('trilha');
   renderTrilha();
@@ -2405,7 +2405,7 @@ function renderTrilha() {
   document.getElementById('pPend').textContent=`${total-green-yellow-red-na} pendentes`;
   document.getElementById('pBlocos').textContent=`${blocosDone}/${blocosVisiveis} blocos`;
   document.getElementById('pNA').textContent=`${na} N/A`;
-  document.getElementById('certBtn').classList.toggle('show', isMaster && isCertificadoElegivel(c));
+  document.getElementById('certBtn').classList.toggle('show', (isMaster || ACESSO_ATUAL.tipo === 'franquia') && isCertificadoElegivel(c));
 
   // Conformidade — só master E quando é franquia
   document.getElementById('confBlock').style.display = (isMaster && esFranquia && c.funcao !== 'franqueado') ? '' : 'none';
